@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrickRaga - Premium Cricket Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --secondary-gold: #FFD700;
+            --dark-bg: #0A0A0A;
+            --card-bg: rgba(20, 20, 20, 0.8);
+            --text-light: #F5F5F5;
+            --text-gold: #D4AF37;
+            --accent-color: #8B4513;
+            --border-gold: rgba(212, 175, 55, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(20, 20, 20, 0.8) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-gold);
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--primary-gold);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: linear-gradient(90deg, var(--primary-gold), var(--secondary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav a:hover {
+            color: var(--primary-gold);
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gold);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 5% 60px;
+            position: relative;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--secondary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #CCCCCC;
+            line-height: 1.6;
+        }
+
+        /* Enhanced 3D Bouncy Heading */
+        .heading-container {
+            margin: 40px 0 60px;
+            perspective: 1000px;
+        }
+
+        .heading {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .heading span {
+            font-size: 4rem;
+            font-weight: 800;
+            display: inline-block;
+            animation: bounce3D 2s infinite ease-in-out;
+            text-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 0 rgba(255, 255, 255, 0.05),
+                0 5px 10px rgba(0, 0, 0, 0.3),
+                0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .heading span::before {
+            content: attr(data-char);
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translateZ(-20px);
+            opacity: 0.7;
+            filter: blur(2px);
+            z-index: -1;
+        }
+
+        .heading span:nth-child(1) { color: #D4AF37; animation-delay: 0s; }
+        .heading span:nth-child(2) { color: #FFD700; animation-delay: 0.1s; }
+        .heading span:nth-child(3) { color: #CFB53B; animation-delay: 0.2s; }
+        .heading span:nth-child(4) { color: #D4AF37; animation-delay: 0.3s; }
+        .heading span:nth-child(5) { color: #FFD700; animation-delay: 0.4s; }
+        .heading span:nth-child(6) { color: #CFB53B; animation-delay: 0.5s; }
+        .heading span:nth-child(7) { color: #D4AF37; animation-delay: 0.6s; }
+        .heading span:nth-child(8) { color: #FFD700; animation-delay: 0.7s; }
+        .heading span:nth-child(9) { color: #CFB53B; animation-delay: 0.8s; }
+
+        @keyframes bounce3D {
+            0%, 100% { 
+                transform: translateY(0) translateZ(0); 
+            }
+            50% { 
+                transform: translateY(-20px) translateZ(10px); 
+                text-shadow: 
+                    0 1px 0 rgba(255, 255, 255, 0.1),
+                    0 2px 0 rgba(255, 255, 255, 0.05),
+                    0 5px 10px rgba(0, 0, 0, 0.3),
+                    0 10px 20px rgba(0, 0, 0, 0.2),
+                    0 0 20px currentColor;
+            }
+        }
+
+        /* Premium Cards */
+        .cards-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+            position: relative;
+            display: inline-block;
+        }
+
+        .card h3::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-gold);
+            transition: width 0.3s ease;
+        }
+
+        .card:hover h3::after {
+            width: 100%;
+        }
+
+        .card p {
+            color: #CCCCCC;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 10, 0.9);
+            border-top: 1px solid var(--border-gold);
+            padding: 30px 5%;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-gold);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .heading span {
+                font-size: 2.8rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .heading span {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-crown"></i>
+            <h1>CrickRaga</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Matches</a></li>
+                <li><a href="#">Players</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Premium Cricket Experience</h2>
+        <p>Discover the ultimate cricket platform with real-time updates, expert analysis, and exclusive content for true cricket enthusiasts.</p>
+        
+        <!-- Enhanced 3D Bouncy Heading -->
+        <div class="heading-container">
+            <div class="heading">
+                <span data-char="C">C</span>
+                <span data-char="r">r</span>
+                <span data-char="i">i</span>
+                <span data-char="c">c</span>
+                <span data-char="k">k</span>
+                <span data-char="R">R</span>
+                <span data-char="a">a</span>
+                <span data-char="g">g</span>
+                <span data-char="a">a</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="cards-container">
+        <div class="cards">
+            <div class="card">
+                <i class="fas fa-calendar-alt card-icon"></i>
+                <h3>Upcoming Matches</h3>
+                <p id="upcoming">India vs Pakistan - Sunday 7PM</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-coin card-icon"></i>
+                <h3>Toss Play</h3>
+                <p id="toss">Toss not decided yet</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-users card-icon"></i>
+                <h3>Team/Draw</h3>
+                <p id="team">Teams will be announced soon</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-chart-line card-icon"></i>
+                <h3>Market</h3>
+                <p id="market">Market updates loading...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="copyright">© 2023 CrickRaga. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Load data from localStorage or use defaults
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to safely get data from localStorage
+            function getLocalStorageItem(key, defaultValue) {
+                try {
+                    return localStorage.getItem(key) || defaultValue;
+                } catch (error) {
+                    console.error('Error accessing localStorage:', error);
+                    return defaultValue;
+                }
+            }
+
+            // Set the content for each card
+            document.getElementById("upcoming").innerText = getLocalStorageItem("upcoming", "India vs Pakistan - Sunday 7PM");
+            document.getElementById("toss").innerText = getLocalStorageItem("toss", "Toss not decided yet");
+            document.getElementById("team").innerText = getLocalStorageItem("team", "Teams will be announced soon");
+            document.getElementById("market").innerText = getLocalStorageItem("market", "Market updates loading...");
+
+            // Add interactive effects to heading letters
+            const letters = document.querySelectorAll('.heading span');
+            letters.forEach(letter => {
+                letter.addEventListener('mouseover', function() {
+                    this.style.animationPlayState = 'paused';
+                    this.style.transform = 'translateY(-15px) translateZ(20px) scale(1.1)';
+                });
+                
+                letter.addEventListener('mouseout', function() {
+                    this.style.animationPlayState = 'running';
+                    this.style.transform = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
